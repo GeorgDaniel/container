@@ -3,11 +3,11 @@ package org.opentosca.container.core.next.services.instances;
 import java.util.Collection;
 import java.util.Optional;
 
-import javax.ws.rs.NotFoundException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.core.model.ModelUtils;
 import org.opentosca.container.core.model.csar.Csar;
 import org.opentosca.container.core.model.csar.CsarId;

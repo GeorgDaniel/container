@@ -16,12 +16,11 @@ package org.opentosca.container.api.config;
 import java.io.IOException;
 import java.util.List;
 
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.Provider;
-
 import com.google.common.collect.Lists;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.ext.Provider;
 import org.apache.commons.io.IOUtils;
 import org.opentosca.container.core.common.uri.UriUtil;
 import org.slf4j.Logger;

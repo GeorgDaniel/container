@@ -4,25 +4,23 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
-
 import org.eclipse.winery.model.tosca.TServiceTemplate;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Link;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import org.opentosca.container.api.dto.plan.PlanDTO;
 import org.opentosca.container.api.dto.plan.PlanInstanceDTO;
 import org.opentosca.container.api.dto.plan.PlanInstanceEventDTO;
@@ -161,7 +159,7 @@ public class BuildPlanController {
         PlanInstance pi = planInstanceService.getPlanInstanceByCorrelationIdWithConnectedEntities(instance);
 
         if (pi == null) {
-            return Response.status(Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         final PlanInstanceDTO dto = PlanInstanceDTO.Converter.convert(pi);
@@ -206,7 +204,7 @@ public class BuildPlanController {
         PlanInstance pi = planInstanceService.resolvePlanInstance(null, instance);
         return planInstanceService.updatePlanInstanceState(pi, PlanInstanceState.valueOf(request))
             ? Response.ok().build()
-            : Response.status(Status.BAD_REQUEST).build();
+            : Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @GET
@@ -239,7 +237,7 @@ public class BuildPlanController {
         final String entry = logEntry.getLogEntry();
         if (entry == null || entry.length() <= 0) {
             LOGGER.info("Log entry is empty!");
-            return Response.status(Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         PlanInstance pi = planInstanceService.resolvePlanInstanceWithLogs(null, instance);
         final PlanInstanceEvent event = new PlanInstanceEvent("INFO", "PLAN_LOG", entry);

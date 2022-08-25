@@ -12,10 +12,10 @@ import java.util.Map;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import javax.ws.rs.HttpMethod;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import jakarta.ws.rs.HttpMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.slf4j.Logger;

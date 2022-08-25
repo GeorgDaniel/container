@@ -82,7 +82,7 @@ public class NodeTemplateService {
             serviceTemplate = ToscaEngine.resolveServiceTemplate(csar, serviceTemplateNameAsString);
             nodeTemplate = ToscaEngine.resolveNodeTemplate(serviceTemplate, nodeTemplateId);
         } catch (NotFoundException e) {
-            throw new javax.ws.rs.NotFoundException(e.getMessage(), e);
+            throw new jakarta.ws.rs.NotFoundException(e.getMessage(), e);
         }
         final Document propertiesAsDocument = ToscaEngine.getEntityTemplateProperties(nodeTemplate);
 

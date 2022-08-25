@@ -12,11 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.inject.Inject;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.eclipse.winery.model.tosca.TDefinitions;
 import org.eclipse.winery.model.tosca.TEntityTemplate;
 import org.eclipse.winery.model.tosca.TEntityTemplate.Properties;
 import org.eclipse.winery.model.tosca.TNodeTemplate;
@@ -27,8 +25,6 @@ import org.eclipse.winery.model.tosca.TTopologyTemplate;
 import org.opentosca.container.core.common.SystemException;
 import org.opentosca.container.core.common.UserException;
 import org.opentosca.container.core.engine.ToscaEngine;
-import org.opentosca.container.core.engine.xml.IXMLSerializer;
-import org.opentosca.container.core.engine.xml.IXMLSerializerService;
 import org.opentosca.container.core.extension.TParameterDTO;
 import org.opentosca.container.core.model.csar.Csar;
 import org.slf4j.Logger;
@@ -43,13 +39,6 @@ import org.w3c.dom.NodeList;
 public class RulesChecker {
 
     private final static Logger LOG = LoggerFactory.getLogger(RulesChecker.class);
-
-    private final IXMLSerializer serializer;
-
-    @Inject
-    public RulesChecker(IXMLSerializerService service) {
-        this.serializer = service.getXmlSerializer();
-    }
 
     private static Map<String, String> getPropertiesFromDoc(final Document doc) {
 
@@ -247,10 +236,15 @@ public class RulesChecker {
             for (Iterator<Path> rulesFilesIt = rulesFiles.iterator(); rulesFilesIt.hasNext(); ) {
                 Path rulesFile = rulesFilesIt.next();
                 LOG.trace("Rules File: {}", rulesFile.toAbsolutePath());
-                final TDefinitions definitions = serializer.unmarshal(Files.newInputStream(rulesFile));
-                definitions.getServiceTemplateOrNodeTypeOrNodeTypeImplementation()
-                    .stream().map(TServiceTemplate.class::cast)
-                    .forEach(rulesList::add);
+
+                //final TDefinitions definitions = serializer.unmarshal(Files.newInputStream(rulesFile));
+                // maybe check this <.<
+                csar.definitions().forEach(definitions ->{
+                    definitions.getServiceTemplateOrNodeTypeOrNodeTypeImplementation()
+                        .stream().map(TServiceTemplate.class::cast)
+                        .forEach(rulesList::add);
+                });
+
             }
         } catch (IOException e) {
             return Collections.emptyList();

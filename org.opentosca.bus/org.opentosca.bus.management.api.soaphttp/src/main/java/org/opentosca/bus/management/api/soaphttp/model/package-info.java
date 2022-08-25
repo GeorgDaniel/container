@@ -6,6 +6,6 @@
 // Generated on: 2018.07.16 at 01:55:00 PM CEST
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://siserver.org/schema",
-    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://siserver.org/schema",
+    elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.opentosca.bus.management.api.soaphttp.model;

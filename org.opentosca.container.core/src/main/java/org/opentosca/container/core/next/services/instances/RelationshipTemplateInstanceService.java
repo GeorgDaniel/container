@@ -6,12 +6,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
 import javax.xml.namespace.QName;
 
 import org.eclipse.winery.model.tosca.TRelationshipTemplate;
 import org.eclipse.winery.model.tosca.TServiceTemplate;
 
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.core.common.jpa.DocumentConverter;
 import org.opentosca.container.core.engine.ToscaEngine;
 import org.opentosca.container.core.model.ModelUtils;

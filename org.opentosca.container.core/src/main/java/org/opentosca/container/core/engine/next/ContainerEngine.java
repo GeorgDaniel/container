@@ -7,7 +7,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.winery.model.ids.definitions.ArtifactTemplateId;
 import org.eclipse.winery.model.tosca.TArtifactReference;
@@ -18,7 +20,6 @@ import org.eclipse.winery.model.tosca.TNodeTypeImplementation;
 import org.eclipse.winery.model.tosca.TRelationshipType;
 
 import org.opentosca.container.core.engine.ResolvedArtifacts;
-import org.opentosca.container.core.engine.xml.IXMLSerializerService;
 import org.opentosca.container.core.model.csar.Csar;
 import org.opentosca.container.core.next.model.NodeTemplateInstance;
 import org.opentosca.container.core.next.model.RelationshipTemplateInstance;
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Implements Tosca-Engine-like operations for the model classes available under {@link
@@ -37,12 +39,8 @@ public final class ContainerEngine {
 
     private static final Logger LOG = LoggerFactory.getLogger(ContainerEngine.class);
 
-    private final IXMLSerializerService xmlSerializerService;
+    //private final IXMLSerializerService xmlSerializerService;
 
-    @Inject
-    public ContainerEngine(IXMLSerializerService xmlSerializerService) {
-        this.xmlSerializerService = xmlSerializerService;
-    }
 
     public static NodeTemplateInstance resolveRelationshipOperationTarget(RelationshipTemplateInstance relationshipInstance,
                                                                           TRelationshipType relationshipType,
@@ -130,6 +128,39 @@ public final class ContainerEngine {
                 return null;
             }
         }
-        return xmlSerializerService.getXmlSerializer().elementsIntoDocument(listOfAnyElements, "DeploymentArtifactSpecificContent");
+        try {
+            return this.elementsIntoDocument(listOfAnyElements, "DeploymentArtifactSpecificContent");
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
+    public Document elementsIntoDocument(final List<Element> elements, final String rootElementName) throws ParserConfigurationException {
+
+                    DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setNamespaceAware(true);
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        final Document returnDoc = documentBuilder.newDocument();
+
+                final Element root = returnDoc.createElement(rootElementName);
+                returnDoc.appendChild(root);
+
+                for (final Element element : elements) {
+                    final Node node = returnDoc.importNode(element, true);
+                    if (node == null) {
+                        // return null for easier checking of an error.
+                        // if the return is not null, an empty or incomplete but valid
+                        // document
+                        // without
+                        // content would be returned.
+                        return null;
+                    }
+                    root.appendChild(node);
+                }
+
+                return returnDoc;
+            }
+
+
 }

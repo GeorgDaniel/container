@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
 import javax.xml.namespace.QName;
 
 import org.eclipse.winery.model.tosca.TRelationshipTemplate;
 
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.core.model.csar.Csar;
 import org.opentosca.container.core.model.csar.CsarId;
 import org.opentosca.container.core.service.CsarStorageService;

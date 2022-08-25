@@ -6,6 +6,6 @@
 // Generated on: 2013.05.27 at 03:40:55 PM CEST
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.apache.org/ode/schemas/dd/2007/03",
-    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.apache.org/ode/schemas/dd/2007/03",
+    elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.apache.ode.schemas.dd._2007._03;

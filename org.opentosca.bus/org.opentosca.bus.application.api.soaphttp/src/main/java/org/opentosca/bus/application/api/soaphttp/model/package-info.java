@@ -6,5 +6,5 @@
 // Generated on: 2016.02.25 at 04:54:56 PM CET
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://opentosca.org/appinvoker/")
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://opentosca.org/appinvoker/")
 package org.opentosca.bus.application.api.soaphttp.model;

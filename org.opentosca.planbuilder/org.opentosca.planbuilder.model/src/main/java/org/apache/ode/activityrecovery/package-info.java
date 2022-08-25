@@ -6,6 +6,6 @@
 // Generated on: 2013.05.27 at 03:40:55 PM CEST
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://ode.apache.org/activityRecovery",
-    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://ode.apache.org/activityRecovery",
+    elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.apache.ode.activityrecovery;

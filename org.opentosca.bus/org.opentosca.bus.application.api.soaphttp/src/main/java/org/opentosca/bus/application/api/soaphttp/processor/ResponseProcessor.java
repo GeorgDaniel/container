@@ -1,6 +1,6 @@
 package org.opentosca.bus.application.api.soaphttp.processor;
 
-import javax.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBElement;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.script.ScriptException;
-import javax.ws.rs.HttpMethod;
 import javax.xml.namespace.QName;
 
 import org.eclipse.winery.model.tosca.TNodeTemplate;
@@ -22,6 +21,7 @@ import org.eclipse.winery.model.tosca.TTag;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import jakarta.ws.rs.HttpMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.opentosca.container.core.model.choreography.SituationExpression;

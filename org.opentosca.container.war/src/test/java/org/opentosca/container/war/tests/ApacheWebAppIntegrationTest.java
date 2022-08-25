@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.xml.namespace.QName;
 
 import org.eclipse.winery.model.tosca.TPlan;

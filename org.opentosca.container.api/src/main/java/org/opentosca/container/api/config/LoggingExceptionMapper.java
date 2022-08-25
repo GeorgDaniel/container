@@ -1,12 +1,10 @@
 package org.opentosca.container.api.config;
 
-import javax.ws.rs.NotAcceptableException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
-
+import jakarta.ws.rs.NotAcceptableException;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,10 +17,10 @@ public class LoggingExceptionMapper implements ExceptionMapper<Throwable> {
     public Response toResponse(Throwable exception) {
         if (exception instanceof NotFoundException) {
             logger.error("not found exception", exception);
-            return Response.status(Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         } else if (exception instanceof NotAcceptableException) {
             logger.error("not acceptable exception", exception);
-            return Response.status(Status.NOT_ACCEPTABLE).build();
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
 
         if (exception != null) {

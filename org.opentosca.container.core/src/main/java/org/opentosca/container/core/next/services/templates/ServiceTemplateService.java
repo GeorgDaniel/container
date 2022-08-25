@@ -3,11 +3,11 @@ package org.opentosca.container.core.next.services.templates;
 import java.util.NoSuchElementException;
 
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
 
 import org.eclipse.winery.model.tosca.TBoundaryDefinitions;
 import org.eclipse.winery.model.tosca.TServiceTemplate;
 
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.core.model.csar.Csar;
 import org.opentosca.container.core.model.csar.CsarId;
 import org.opentosca.container.core.service.CsarStorageService;

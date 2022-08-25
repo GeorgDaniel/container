@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Singleton;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 
 import org.opentosca.bus.management.invocation.plugin.script.model.artifacttypes.Artifacttype;

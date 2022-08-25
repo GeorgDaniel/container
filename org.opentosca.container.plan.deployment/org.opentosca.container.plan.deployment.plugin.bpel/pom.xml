@@ -35,7 +35,7 @@
             <version>1.8.0</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.ws.rs</groupId>
+                    <groupId>jakarta.ws.rs</groupId>
                     <artifactId>jsr311-api</artifactId>
                 </exclusion>
             </exclusions>

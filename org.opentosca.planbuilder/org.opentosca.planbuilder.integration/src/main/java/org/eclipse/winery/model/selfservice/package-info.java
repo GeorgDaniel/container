@@ -6,6 +6,6 @@
 // Generated on: 2017.06.28 at 10:18:28 AM CEST
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.eclipse.org/winery/model/selfservice",
-    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.eclipse.org/winery/model/selfservice",
+    elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.eclipse.winery.model.selfservice;

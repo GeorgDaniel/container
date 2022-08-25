@@ -16,20 +16,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.ServerErrorException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 import javax.xml.namespace.QName;
 
 import org.eclipse.winery.model.selfservice.Application;
@@ -40,6 +26,19 @@ import org.eclipse.winery.repository.backend.filebased.FileUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.ServerErrorException;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Link;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.opentosca.container.api.controller.content.DirectoryController;
@@ -64,7 +63,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Api
-@javax.ws.rs.Path("/csars")
+@jakarta.ws.rs.Path("/csars")
 @Component
 public class CsarController {
 
@@ -108,7 +107,7 @@ public class CsarController {
     }
 
     @GET
-    @javax.ws.rs.Path("/{csar}")
+    @jakarta.ws.rs.Path("/{csar}")
     @Produces( {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @ApiOperation(value = "Get a CSAR", response = CsarDTO.class)
     public Response getCsar(@ApiParam("ID of CSAR") @PathParam("csar") final String id) {
@@ -160,18 +159,18 @@ public class CsarController {
 
             return Response.ok(csar).build();
         } catch (NoSuchElementException e) {
-            return Response.status(Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 
-    @javax.ws.rs.Path("/{csar}/content")
+    @jakarta.ws.rs.Path("/{csar}/content")
     @ApiOperation(hidden = true, value = "")
     public DirectoryController getContent(@PathParam("csar") final String id) {
         logger.debug("Invoking getContent");
         try {
             return new DirectoryController(storage.findById(new CsarId(id)).getSaveLocation());
         } catch (NoSuchElementException e) {
-            throw new javax.ws.rs.NotFoundException(e);
+            throw new jakarta.ws.rs.NotFoundException(e);
         }
     }
 
@@ -184,7 +183,7 @@ public class CsarController {
                                @FormDataParam("file") final FormDataContentDisposition file) {
         logger.debug("Invoking uploadCsar");
         if (is == null || file == null) {
-            return Response.status(Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         logger.info("Uploading new CSAR file \"{}\", size {}", file.getFileName(), file.getSize());
         return handleCsarUpload(file.getFileName(), is, applyEnrichment);
@@ -197,7 +196,7 @@ public class CsarController {
     public Response uploadCsar(@ApiParam(required = true) final CsarUploadRequest request, @HeaderParam("Authorization") String authorizationString) {
         logger.debug("Invoking uploadCsar");
         if (request == null) {
-            return Response.status(Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
         logger.info("Uploading new CSAR based on request payload: name={}; url={}; applyEnrichment={}", request.getName(),
@@ -239,7 +238,7 @@ public class CsarController {
             csarId = storage.storeCSAR(tempFile);
         } catch (UserException e) {
             FileUtils.forceDelete(tempFile);
-            return Response.status(Status.CONFLICT).entity(e).build();
+            return Response.status(Response.Status.CONFLICT).entity(e).build();
         } catch (SystemException e) {
             FileUtils.forceDelete(tempFile);
             return Response.serverError().entity(e).build();
@@ -347,7 +346,7 @@ public class CsarController {
     }
 
     @DELETE
-    @javax.ws.rs.Path("/{csar}")
+    @jakarta.ws.rs.Path("/{csar}")
     @ApiOperation(value = "Delete a CSAR")
     public Response deleteCsar(@ApiParam("ID of CSAR") @PathParam("csar") final String id) {
         logger.debug("Invoking deleteCsar");
@@ -370,7 +369,7 @@ public class CsarController {
     }
 
     @POST
-    @javax.ws.rs.Path("/transform")
+    @jakarta.ws.rs.Path("/transform")
     @ApiOperation(value = "Transform this CSAR to a new CSAR")
     @Consumes( {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces( {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.NotFoundException;
-
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.core.common.jpa.DocumentConverter;
 import org.opentosca.container.core.model.ModelUtils;
 import org.opentosca.container.core.model.csar.Csar;

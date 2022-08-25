@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
 
 import org.eclipse.winery.model.tosca.TPlan;
 import org.eclipse.winery.model.tosca.TServiceTemplate;
 
+import jakarta.ws.rs.NotFoundException;
 import org.opentosca.container.api.dto.plan.PlanDTO;
 import org.opentosca.container.control.OpenToscaControlService;
 import org.opentosca.container.core.common.Settings;

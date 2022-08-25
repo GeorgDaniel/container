@@ -7,17 +7,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.opentosca.container.api.planbuilder.PlanbuilderWorker;
 import org.opentosca.container.api.planbuilder.RunningTasks;
@@ -74,7 +73,7 @@ public class PlanbuilderController {
         if (RunningTasks.exists(taskId)) {
             return Response.ok(RunningTasks.get(taskId)).build();
         } else {
-            return Response.status(Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 
@@ -90,7 +89,7 @@ public class PlanbuilderController {
             planPostURL = new URL(generatePlanForTopology.PLANPOSTURL);
         } catch (final MalformedURLException e) {
             LOG.info("Failed to create csarURl or planPostURL for async build plan", e);
-            return Response.status(Status.BAD_REQUEST).entity(e).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
         final PlanGenerationState newTaskState = new PlanGenerationState(csarURL, planPostURL);
         final String newId = RunningTasks.putSafe(newTaskState);
@@ -122,7 +121,7 @@ public class PlanbuilderController {
             planPostURL = new URL(generatePlanForTopology.PLANPOSTURL);
         } catch (final MalformedURLException e) {
             LOG.info("Failed to create csarURl or planPostURL for sync build plan", e);
-            return Response.status(Status.BAD_REQUEST).entity(e).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
 
         final PlanGenerationState newTaskState = new PlanGenerationState(csarURL, planPostURL);
@@ -137,7 +136,7 @@ public class PlanbuilderController {
             case CSARDOWNLOADFAILED:
             case PLANGENERATIONFAILED:
             case PLANSENDINGFAILED:
-                return Response.status(Status.INTERNAL_SERVER_ERROR).entity(worker.getState()).build();
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(worker.getState()).build();
             default:
                 return Response.ok().entity(worker.getState()).build();
         }

@@ -6,6 +6,6 @@
 // Generated on: 2018.07.05 at 09:07:58 PM CEST
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://collaboration.org/schema",
-    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://collaboration.org/schema",
+    elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.opentosca.bus.management.service.impl.collaboration.model;

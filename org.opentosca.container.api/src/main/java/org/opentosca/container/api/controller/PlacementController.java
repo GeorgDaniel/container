@@ -8,19 +8,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.container.ResourceContext;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.container.ResourceContext;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import org.opentosca.container.api.dto.NodeTemplateDTO;
 import org.opentosca.container.api.service.NodeTemplateService;
 import org.opentosca.container.core.common.NotFoundException;
@@ -66,7 +65,7 @@ public class PlacementController {
                 try {
                     return nodeTemplateService.getNodeTemplateById(csarId, serviceTemplateId, id);
                 } catch (NotFoundException e) {
-                    throw new javax.ws.rs.NotFoundException(e);
+                    throw new jakarta.ws.rs.NotFoundException(e);
                 }
             })
             .collect(Collectors.toList());
